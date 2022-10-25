@@ -5,8 +5,28 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../context/Context";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
+
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, userLogOut } = useContext(AuthContext);
+
+  const logOut = () => {
+    userLogOut()
+      .then(() => {
+        MySwal.fire({
+          icon: "success",
+          title: "Log out successful",
+        });
+      })
+      .catch((err) => {
+        MySwal.fire({
+          icon: "error",
+          title: err.message,
+        });
+      });
+  };
   return (
     <div>
       <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
@@ -36,7 +56,9 @@ const Header = () => {
               <>
                 <img src={user?.photoURL} alt="" />
                 <p>{user.displayName}</p>
-                <Button variant="outline-secondary">Log out</Button>
+                <Button onClick={logOut} variant="outline-secondary">
+                  Log out
+                </Button>
               </>
             ) : (
               <Link

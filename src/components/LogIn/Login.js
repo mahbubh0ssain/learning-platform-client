@@ -1,14 +1,43 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Form from "react-bootstrap/Form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import { AuthContext } from "../../context/Context";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
 
 const Login = () => {
-  
+  const { user, userSignIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    userSignIn(email, password)
+      .then(() => {
+        MySwal.fire({
+          icon: "success",
+          title: "Login successful",
+        });
+      })
+      .catch((err) => {
+        MySwal.fire({
+          icon: "error",
+          title: err.message,
+        });
+      });
+  };
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user]);
   return (
     <div>
       <Form
-        onSubmit={""}
+        onSubmit={handleSubmit}
         className="w-50 mx-auto my-3 bg-light p-5  rounded-3 shadow"
       >
         <h1 className="mb-2 text-center">User Log in</h1>
