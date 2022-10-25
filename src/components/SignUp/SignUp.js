@@ -3,10 +3,21 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 const SignUp = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const displayName = form.name.value;
+    const photoURL = form.photoURL.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const profile = { displayName, photoURL };
+    console.log(displayName, photoURL, email, password);
+  };
+
   return (
     <div>
       <Form
-        onSubmit={"handleSubmit"}
+        onSubmit={handleSubmit}
         className="w-50 mx-auto my-3 bg-light p-5  rounded-3 shadow"
       >
         <h1 className="mb-2 text-center">User Sign up</h1>
@@ -88,14 +99,14 @@ const SignUp = () => {
             />
             Continue with Goggle
           </Button>
-          <Button variant="outline-primary" onClick={""}>
+          <Button variant="outline-dark" onClick={""}>
             <img
               className="img-fluid me-2"
               style={{ height: "30px", width: "30px" }}
-              src={"https://i.ibb.co/L8sxygz/fb.png"}
+              src={"https://cdn-icons-png.flaticon.com/512/25/25231.png"}
               alt="..."
             />
-            Continue with Facebook
+            Continue with Github
           </Button>
         </div>
       </Form>
