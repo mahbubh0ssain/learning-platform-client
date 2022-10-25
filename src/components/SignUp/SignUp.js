@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../context/Context";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+const MySwal = withReactContent(Swal);
+
 const SignUp = () => {
+  const { userSignUp } = useContext(AuthContext);
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -11,7 +17,20 @@ const SignUp = () => {
     const email = form.email.value;
     const password = form.password.value;
     const profile = { displayName, photoURL };
-    console.log(displayName, photoURL, email, password);
+    userSignUp(email, password)
+      .then((res) => {
+        console.log(res.user);
+        MySwal.fire({
+          icon: "success",
+          title: "User successfully created",
+        });
+      })
+      .catch((err) => {
+        MySwal.fire({
+          icon: "error",
+          title: err.message,
+        });
+      });
   };
 
   return (
@@ -63,7 +82,6 @@ const SignUp = () => {
 
         <Form.Group className="mb-3 ">
           <Form.Check
-            onClick={"handleCheckBtnFunc"}
             required
             label={
               <>
@@ -74,12 +92,7 @@ const SignUp = () => {
             feedbackType="invalid"
           />
         </Form.Group>
-        <Button
-          disabled={!"btnCheck"}
-          className="w-100"
-          variant="primary"
-          type="submit"
-        >
+        <Button className="w-100" variant="primary" type="submit">
           Create account
         </Button>
         <p className="text-center mt-2">
@@ -90,7 +103,7 @@ const SignUp = () => {
           <small>Or</small> <hr />
         </div>
         <div className="my-3 d-flex justify-content-around align-items-center">
-          <Button variant="outline-primary" onClick={""}>
+          <Button variant="outline-primary">
             <img
               className="img-fluid me-2 "
               style={{ height: "30px", width: "30px" }}
@@ -99,7 +112,7 @@ const SignUp = () => {
             />
             Continue with Goggle
           </Button>
-          <Button variant="outline-dark" onClick={""}>
+          <Button variant="outline-dark">
             <img
               className="img-fluid me-2"
               style={{ height: "30px", width: "30px" }}
