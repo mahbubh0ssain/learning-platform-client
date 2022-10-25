@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Button } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../context/Context";
 const Header = () => {
+  const { user } = useContext(AuthContext);
   return (
     <div>
       <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
@@ -14,7 +17,7 @@ const Header = () => {
 
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="ms-auto">
+            <Nav className="ms-auto  ">
               <Link className="me-3 text-decoration-none text-dark" to="/learn">
                 Learn
               </Link>
@@ -27,10 +30,22 @@ const Header = () => {
               <Link className="me-3 text-decoration-none text-dark">
                 Toggle
               </Link>
-              <Link className="me-3 text-decoration-none text-dark" to="login">
+            </Nav>
+
+            {user?.uid ? (
+              <>
+                <img src={user?.photoURL} alt="" />
+                <p>{user.displayName}</p>
+                <Button variant="outline-secondary">Log out</Button>
+              </>
+            ) : (
+              <Link
+                className="me-3 text-decoration-none text-dark btn btn-outline-primary"
+                to="login"
+              >
                 Login
               </Link>
-            </Nav>
+            )}
           </Navbar.Collapse>
         </Container>
       </Navbar>

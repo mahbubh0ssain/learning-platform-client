@@ -6,6 +6,7 @@ import Faq from "../components/FAQ/Faq";
 import Main from "../components/Layout/Main";
 import Login from "../components/LogIn/Login";
 import SignUp from "../components/SignUp/SignUp";
+import TermsAndCondition from "../components/TermsAndCondition/TermsAndCondition";
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ export const router = createBrowserRouter([
       {
         path: "signup",
         element: <SignUp></SignUp>,
+      },
+      {
+        path: "terms",
+        element: <TermsAndCondition></TermsAndCondition>,
       },
     ],
   },
