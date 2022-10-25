@@ -1,14 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/Context";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 const MySwal = withReactContent(Swal);
 
 const SignUp = () => {
-  const { userSignUp } = useContext(AuthContext);
+  const { user, userSignUp } = useContext(AuthContext);
+  const [btnChecked, setBtnChecked] = useState(false);
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -20,6 +23,7 @@ const SignUp = () => {
     userSignUp(email, password)
       .then((res) => {
         console.log(res.user);
+        navigate("/");
         MySwal.fire({
           icon: "success",
           title: "User successfully created",
@@ -32,7 +36,9 @@ const SignUp = () => {
         });
       });
   };
-
+  const btnCheckFunc = (e) => {
+    setBtnChecked(e.target.checked);
+  };
   return (
     <div>
       <Form
@@ -82,6 +88,7 @@ const SignUp = () => {
 
         <Form.Group className="mb-3 ">
           <Form.Check
+            onClick={btnCheckFunc}
             required
             label={
               <>
@@ -92,7 +99,12 @@ const SignUp = () => {
             feedbackType="invalid"
           />
         </Form.Group>
-        <Button className="w-100" variant="primary" type="submit">
+        <Button
+          disabled={!btnChecked}
+          className="w-100"
+          variant="primary"
+          type="submit"
+        >
           Create account
         </Button>
         <p className="text-center mt-2">

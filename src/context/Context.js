@@ -23,7 +23,7 @@ const Context = ({ children }) => {
     return () => unSubscribe();
   }, []);
 
-  const info = { userSignUp };
+  const info = { user, userSignUp };
   return <AuthContext.Provider value={info}>{children}</AuthContext.Provider>;
 };
 
