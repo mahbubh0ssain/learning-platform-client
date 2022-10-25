@@ -8,7 +8,8 @@ import withReactContent from "sweetalert2-react-content";
 const MySwal = withReactContent(Swal);
 
 const SignUp = () => {
-  const { user, userSignUp } = useContext(AuthContext);
+  const { user, userSignUp, updateUserProfile, googleSignIn, githubSignIn } =
+    useContext(AuthContext);
   const [btnChecked, setBtnChecked] = useState(false);
   const navigate = useNavigate();
 
@@ -22,7 +23,10 @@ const SignUp = () => {
     const profile = { displayName, photoURL };
     userSignUp(email, password)
       .then((res) => {
-        console.log(res.user);
+        updateUserProfile(profile)
+          .then(() => {})
+          .catch(() => {});
+        form.reset();
         navigate("/");
         MySwal.fire({
           icon: "success",
@@ -38,6 +42,36 @@ const SignUp = () => {
   };
   const btnCheckFunc = (e) => {
     setBtnChecked(e.target.checked);
+  };
+  const signInGoogle = () => {
+    googleSignIn()
+      .then(() => {
+        MySwal.fire({
+          icon: "success",
+          title: "Successful.",
+        });
+      })
+      .catch((err) => {
+        MySwal.fire({
+          icon: "error",
+          title: err.message,
+        });
+      });
+  };
+  const signInGithub = () => {
+    githubSignIn()
+      .then(() => {
+        MySwal.fire({
+          icon: "success",
+          title: "Successful.",
+        });
+      })
+      .catch((err) => {
+        MySwal.fire({
+          icon: "error",
+          title: err.message,
+        });
+      });
   };
   return (
     <div>
@@ -110,12 +144,9 @@ const SignUp = () => {
         <p className="text-center mt-2">
           Already have an account? <Link to="/login">Login</Link>
         </p>
+
         <div className="my-3 d-flex justify-content-around align-items-center">
-          <hr />
-          <small>Or</small> <hr />
-        </div>
-        <div className="my-3 d-flex justify-content-around align-items-center">
-          <Button variant="outline-primary">
+          <Button onClick={signInGoogle} variant="outline-primary">
             <img
               className="img-fluid me-2 "
               style={{ height: "30px", width: "30px" }}
@@ -124,7 +155,7 @@ const SignUp = () => {
             />
             Continue with Goggle
           </Button>
-          <Button variant="outline-dark">
+          <Button onClick={signInGithub} variant="outline-secondary">
             <img
               className="img-fluid me-2"
               style={{ height: "30px", width: "30px" }}

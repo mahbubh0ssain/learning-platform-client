@@ -8,7 +8,7 @@ import withReactContent from "sweetalert2-react-content";
 const MySwal = withReactContent(Swal);
 
 const Login = () => {
-  const { user, userSignIn } = useContext(AuthContext);
+  const { user, userSignIn, googleSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,9 +17,25 @@ const Login = () => {
     const password = form.password.value;
     userSignIn(email, password)
       .then(() => {
+        form.reset();
         MySwal.fire({
           icon: "success",
           title: "Login successful",
+        });
+      })
+      .catch((err) => {
+        MySwal.fire({
+          icon: "error",
+          title: err.message,
+        });
+      });
+  };
+  const signInGoogle = () => {
+    googleSignIn()
+      .then(() => {
+        MySwal.fire({
+          icon: "success",
+          title: "Successful.",
         });
       })
       .catch((err) => {
@@ -81,12 +97,9 @@ const Login = () => {
         <p className="text-center mt-2">
           Don't have an account? <Link to="/signup">Create an account</Link>
         </p>
+
         <div className="my-3 d-flex justify-content-around align-items-center">
-          <hr />
-          <small>Or</small> <hr />
-        </div>
-        <div className="my-3 d-flex justify-content-around align-items-center">
-          <Button variant="outline-primary" onClick={""}>
+          <Button variant="outline-primary" onClick={signInGoogle}>
             <img
               className="img-fluid me-2 "
               style={{ height: "30px", width: "30px" }}
@@ -95,11 +108,11 @@ const Login = () => {
             />
             Continue with Goggle
           </Button>
-          <Button variant="outline-primary" onClick={""}>
+          <Button variant="outline-secondary" onClick={""}>
             <img
               className="img-fluid me-2"
               style={{ height: "30px", width: "30px" }}
-              src={"https://i.ibb.co/L8sxygz/fb.png"}
+              src={"https://cdn-icons-png.flaticon.com/512/25/25231.png"}
               alt="..."
             />
             Continue with Facebook
