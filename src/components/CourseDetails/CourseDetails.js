@@ -15,11 +15,20 @@ const CourseDetails = () => {
     <div className="container my-3">
       <div className=" my-3 d-flex justify-content-center align-items-center">
         <h5 className="me-3 mb-0">Course details {title} </h5>
-
         <Pdf targetRef={ref} filename="learn-shine-course.pdf">
           {({ toPdf }) => (
             <div style={{ cursor: "pointer" }} onClick={toPdf}>
-              <FaFilePdf />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                fill="currentColor"
+                className="text-primary bi bi-download"
+                viewBox="0 0 16 16"
+              >
+                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+              </svg>
             </div>
           )}
         </Pdf>
