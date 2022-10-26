@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../context/Context";
 
 const Checkout = () => {
   const data = useLoaderData();
-  const { title, thumbnail_url, details } = data;
+  const { user } = useContext(AuthContext);
+  const { id, title, thumbnail_url, details, price } = data;
   return (
     <div className="container ">
       <div className="card w-75 my-5  mx-auto">
@@ -11,21 +13,24 @@ const Checkout = () => {
           <div className="col-md-4">
             <img
               src={thumbnail_url}
-              className="img-fluid rounded-start"
+              className="img-fluid p-3"
               alt="thumbnail"
             />
           </div>
           <div className="col-md-8">
             <div className="card-body align-items-center">
+              <h6 className="text-primary">Course ID: {id}</h6>
+              <h6 className="text-primary">Price: ${price}</h6>
               <h5 className="card-title">{title}</h5>
               <p className="card-text">{details}</p>
-              <p className="card-text">
-                <small className="text-muted">Last updated 3 mins ago</small>
-              </p>
             </div>
           </div>
         </div>
       </div>
+      <h4 className="text-center mb-4">
+        Thanks, <span className="text-primary">{user.displayName}</span> for
+        purchase. Stay with <span className="text-primary">Learn Shine.</span>
+      </h4>
     </div>
   );
 };

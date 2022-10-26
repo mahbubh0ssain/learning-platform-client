@@ -7,7 +7,7 @@ const ref = React.createRef();
 
 const CourseDetails = () => {
   const course = useLoaderData();
-  const { id, title, author, image_url, details } = course;
+  const { id, title, author, image_url, details, price } = course;
   const navigate = useNavigate();
   const { name, img } = author;
 
@@ -55,6 +55,7 @@ const CourseDetails = () => {
         />
         <Card.Body>
           <Card.Title>{title}</Card.Title>
+          <h3>Price: ${price}</h3>
           <Card.Text>
             <p>{details}</p>
             <Button onClick={() => navigate(-1)}>Back</Button>

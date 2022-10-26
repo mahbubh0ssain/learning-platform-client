@@ -59,7 +59,10 @@ const Footer = () => {
           </a>
         </div>
       </section>
-      <div className="text-center p-4">© 2022 Copyright Learn Shine</div>
+      <div className="text-center p-4">
+        © 2022 All Rights reserved by{" "}
+        <span className="fw-bold">Learn Shine</span>
+      </div>
     </footer>
   );
 };
