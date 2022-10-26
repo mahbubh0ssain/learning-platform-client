@@ -15,6 +15,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "learn",
+        loader: () => fetch("https://learn-shine-server.vercel.app/courses"),
         element: <Courses></Courses>,
       },
       {

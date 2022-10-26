@@ -96,7 +96,7 @@ const SignUp = () => {
             name="photoURL"
             required
             type="text"
-            placeholder="Password"
+            placeholder="PhotoURL"
           />
         </Form.Group>
 

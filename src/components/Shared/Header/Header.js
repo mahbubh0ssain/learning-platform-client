@@ -14,7 +14,6 @@ const MySwal = withReactContent(Swal);
 
 const Header = () => {
   const { user, userLogOut } = useContext(AuthContext);
-  console.log(user);
   const logOut = () => {
     userLogOut()
       .then(() => {
@@ -54,34 +53,30 @@ const Header = () => {
                 Toggle
               </Link>
             </Nav>
-            <>
-              {["bottom"].map((placement) => (
-                <OverlayTrigger
-                  key={placement}
-                  placement={placement}
-                  overlay={
-                    <Tooltip id={`tooltip-${placement}`}>
-                      {user.displayName}
-                    </Tooltip>
-                  }
-                >
-                  <img
-                    className="rounded-circle"
-                    style={{ height: "40px", width: "40px" }}
-                    src={user?.photoURL}
-                    alt=""
-                  />
-                </OverlayTrigger>
-              ))}
-            </>
+
             {user?.uid ? (
               <>
-                <img
-                  className="rounded-circle"
-                  style={{ height: "40px", width: "40px" }}
-                  src={user?.photoURL}
-                  alt=""
-                />
+                {["bottom"].map((placement) => (
+                  <OverlayTrigger
+                    key={placement}
+                    placement={placement}
+                    overlay={
+                      <Tooltip
+                        className="position-absolute"
+                        id={`tooltip-${placement}`}
+                      >
+                        {user.displayName}
+                      </Tooltip>
+                    }
+                  >
+                    <img
+                      className="rounded-circle me-3"
+                      style={{ height: "40px", width: "40px" }}
+                      src={user?.photoURL}
+                      alt=""
+                    />
+                  </OverlayTrigger>
+                ))}
 
                 <Button onClick={logOut} variant="outline-secondary">
                   Log out
