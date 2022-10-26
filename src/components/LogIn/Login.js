@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
@@ -8,7 +8,9 @@ import withReactContent from "sweetalert2-react-content";
 const MySwal = withReactContent(Swal);
 
 const Login = () => {
-  const { user, userSignIn, googleSignIn } = useContext(AuthContext);
+  const { user, userSignIn, googleSignIn, githubSignIn, passwordResetEmail } =
+    useContext(AuthContext);
+  const [email, setEmail] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -47,6 +49,35 @@ const Login = () => {
         });
       });
   };
+  const signInGithub = () => {
+    githubSignIn()
+      .then(() => {
+        MySwal.fire({
+          icon: "success",
+          title: "Successful.",
+        });
+        navigate("/");
+      })
+      .catch((err) => {
+        MySwal.fire({
+          icon: "error",
+          title: err.message,
+        });
+      });
+  };
+  const getEmail = (e) => {
+    setEmail(e.target.value);
+  };
+  const passwordReset = () => {
+    passwordResetEmail(email)
+      .then(() => {
+        MySwal.fire({
+          icon: "success",
+          title: "Password reset email has been sent.",
+        });
+      })
+      .catch(() => {});
+  };
   useEffect(() => {
     if (user) {
       navigate(from, { replace: true });
@@ -63,7 +94,7 @@ const Login = () => {
         <Form.Group className="mb-3">
           <Form.Label>Email address</Form.Label>
           <Form.Control
-            onBlur={""}
+            onBlur={getEmail}
             required
             name="email"
             type="email"
@@ -87,7 +118,7 @@ const Login = () => {
         >
           <Form.Text
             style={{ cursor: "pointer" }}
-            onClick={""}
+            onClick={passwordReset}
             className=" text-primary "
           >
             Forgot Password?
@@ -110,14 +141,14 @@ const Login = () => {
             />
             Continue with Goggle
           </Button>
-          <Button variant="outline-secondary" onClick={""}>
+          <Button variant="outline-secondary" onClick={signInGithub}>
             <img
               className="img-fluid me-2"
               style={{ height: "30px", width: "30px" }}
               src={"https://cdn-icons-png.flaticon.com/512/25/25231.png"}
               alt="..."
             />
-            Continue with Facebook
+            Continue with Github
           </Button>
         </div>
       </Form>

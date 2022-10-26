@@ -27,11 +27,11 @@ const SignUp = () => {
           .then(() => {})
           .catch(() => {});
         form.reset();
-        navigate("/");
         MySwal.fire({
           icon: "success",
           title: "User successfully created",
         });
+        navigate("/");
       })
       .catch((err) => {
         MySwal.fire({
@@ -50,6 +50,7 @@ const SignUp = () => {
           icon: "success",
           title: "Successful.",
         });
+        navigate("/");
       })
       .catch((err) => {
         MySwal.fire({
@@ -65,6 +66,7 @@ const SignUp = () => {
           icon: "success",
           title: "Successful.",
         });
+        navigate("/");
       })
       .catch((err) => {
         MySwal.fire({
@@ -73,6 +75,7 @@ const SignUp = () => {
         });
       });
   };
+
   return (
     <div>
       <Form

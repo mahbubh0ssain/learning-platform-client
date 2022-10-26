@@ -28,8 +28,9 @@ export const router = createBrowserRouter([
         element: <CourseDetails></CourseDetails>,
       },
       {
-        path: "checkout",
-
+        path: "checkout/:id",
+        loader: ({ params }) =>
+          fetch(`https://learn-shine-server.vercel.app/courses/${params.id}`),
         element: (
           <PrivateRoute>
             <Checkout></Checkout>

@@ -10,6 +10,7 @@ import {
   GithubAuthProvider,
   signInWithPopup,
   updateProfile,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 export const AuthContext = createContext("");
 
@@ -46,14 +47,18 @@ const Context = ({ children }) => {
   const githubSignIn = () => {
     return signInWithPopup(auth, githubProvider);
   };
-
+  const passwordResetEmail = (email) => {
+    return sendPasswordResetEmail(auth, email);
+  };
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+      if (currentUser === null || currentUser.uid) {
+        setUser(currentUser);
+      }
       setLoading(false);
     });
     return () => unSubscribe();
-  }, [user]);
+  }, []);
 
   const info = {
     user,
@@ -64,6 +69,7 @@ const Context = ({ children }) => {
     githubSignIn,
     userLogOut,
     loading,
+    passwordResetEmail,
   };
   return <AuthContext.Provider value={info}>{children}</AuthContext.Provider>;
 };
