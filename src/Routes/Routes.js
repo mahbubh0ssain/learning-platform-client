@@ -5,6 +5,7 @@ import Checkout from "../components/Checkout/Checkout";
 import CourseDetails from "../components/CourseDetails/CourseDetails";
 import Courses from "../components/Courses/Courses";
 import Faq from "../components/FAQ/Faq";
+import Home from "../components/Home/Home";
 import Main from "../components/Layout/Main";
 import Login from "../components/LogIn/Login";
 import SignUp from "../components/SignUp/SignUp";
@@ -16,6 +17,11 @@ export const router = createBrowserRouter([
     path: "/",
     element: <Main></Main>,
     children: [
+      {
+        path: "/",
+
+        element: <Home></Home>,
+      },
       {
         path: "learn",
         loader: () => fetch("https://learn-shine-server.vercel.app/courses"),
