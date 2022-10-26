@@ -1,12 +1,15 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import Blog from "../components/Blog/Blog";
+import Checkout from "../components/Checkout/Checkout";
+import CourseDetails from "../components/CourseDetails/CourseDetails";
 import Courses from "../components/Courses/Courses";
 import Faq from "../components/FAQ/Faq";
 import Main from "../components/Layout/Main";
 import Login from "../components/LogIn/Login";
 import SignUp from "../components/SignUp/SignUp";
 import TermsAndCondition from "../components/TermsAndCondition/TermsAndCondition";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +20,21 @@ export const router = createBrowserRouter([
         path: "learn",
         loader: () => fetch("https://learn-shine-server.vercel.app/courses"),
         element: <Courses></Courses>,
+      },
+      {
+        path: "learn/:id",
+        loader: ({ params }) =>
+          fetch(`https://learn-shine-server.vercel.app/courses/${params.id}`),
+        element: <CourseDetails></CourseDetails>,
+      },
+      {
+        path: "checkout",
+
+        element: (
+          <PrivateRoute>
+            <Checkout></Checkout>
+          </PrivateRoute>
+        ),
       },
       {
         path: "faq",

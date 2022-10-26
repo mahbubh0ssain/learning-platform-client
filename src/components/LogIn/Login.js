@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import Form from "react-bootstrap/Form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { AuthContext } from "../../context/Context";
 import Swal from "sweetalert2";
@@ -10,6 +10,8 @@ const MySwal = withReactContent(Swal);
 const Login = () => {
   const { user, userSignIn, googleSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state.from.pathname;
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -47,7 +49,7 @@ const Login = () => {
   };
   useEffect(() => {
     if (user) {
-      navigate("/");
+      navigate(from, (replace = true));
     }
   }, [user]);
   return (
