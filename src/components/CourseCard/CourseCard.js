@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
-
+import "./CourseCard.css";
 const CourseCard = ({ course }) => {
   const { thumbnail_url, id } = course;
   return (
     <div className="col mt-3 ">
-      <div className="card h-100 p-3  ">
+      <div className="card h-100 p-3 hover-zoom ">
         <img
           style={{ height: "218px" }}
           src={thumbnail_url}

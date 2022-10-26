@@ -3,8 +3,7 @@ import Accordion from "react-bootstrap/Accordion";
 const Blog = () => {
   return (
     <div className="container">
-      <h1>This is blog section</h1>
-
+      <h3 className="my-3">Some blogs for Learn Shine learners.</h3>
       <Accordion defaultActiveKey="0" flush alwaysOpen>
         <Accordion.Item eventKey="0">
           <Accordion.Header>

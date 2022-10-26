@@ -8,6 +8,7 @@ import Faq from "../components/FAQ/Faq";
 import Home from "../components/Home/Home";
 import Main from "../components/Layout/Main";
 import Login from "../components/LogIn/Login";
+import NotFound from "../components/NotFound/NotFound";
 import SignUp from "../components/SignUp/SignUp";
 import TermsAndCondition from "../components/TermsAndCondition/TermsAndCondition";
 import PrivateRoute from "./PrivateRoute";
@@ -65,4 +66,5 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  { path: "*", element: <NotFound></NotFound> },
 ]);
