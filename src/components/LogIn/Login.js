@@ -11,7 +11,7 @@ const Login = () => {
   const { user, userSignIn, googleSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state.from.pathname;
+  const from = location.state?.from?.pathname || "/";
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -49,7 +49,7 @@ const Login = () => {
   };
   useEffect(() => {
     if (user) {
-      navigate(from, (replace = true));
+      navigate(from, { replace: true });
     }
   }, [user]);
   return (
