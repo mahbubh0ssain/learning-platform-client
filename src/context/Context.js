@@ -15,13 +15,17 @@ export const AuthContext = createContext("");
 
 const Context = ({ children }) => {
   const auth = getAuth(app);
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
+
   const userSignUp = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
   const userSignIn = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
@@ -33,6 +37,7 @@ const Context = ({ children }) => {
   };
 
   const userLogOut = () => {
+    setLoading(true);
     return signOut(auth);
   };
   const googleSignIn = () => {
@@ -45,9 +50,10 @@ const Context = ({ children }) => {
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setLoading(false);
     });
     return () => unSubscribe();
-  }, []);
+  }, [user]);
 
   const info = {
     user,
@@ -57,6 +63,7 @@ const Context = ({ children }) => {
     googleSignIn,
     githubSignIn,
     userLogOut,
+    loading,
   };
   return <AuthContext.Provider value={info}>{children}</AuthContext.Provider>;
 };

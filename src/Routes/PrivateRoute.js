@@ -1,11 +1,18 @@
 import React, { useContext } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../context/Context";
+import PulseLoader from "react-spinners/PulseLoader";
 
 const PrivateRoute = ({ children }) => {
-  const { user } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
   const location = useLocation();
-  console.log(user);
+  if (loading) {
+    return (
+      <div className="position-absolute top-50 start-50 translate-middle">
+        <PulseLoader color="#36d7b7" size={50} />
+      </div>
+    );
+  }
   if (user) {
     return children;
   }
