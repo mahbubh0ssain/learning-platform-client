@@ -1,19 +1,21 @@
 import React, { useContext } from "react";
-import { Button } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/Context";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { FaUserAlt } from "react-icons/fa";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
+import { Button } from "react-bootstrap";
 const MySwal = withReactContent(Swal);
 
 const Header = () => {
   const { user, userLogOut } = useContext(AuthContext);
+  const navigate = useNavigate();
   const logOut = () => {
     userLogOut()
       .then(() => {
@@ -21,6 +23,7 @@ const Header = () => {
           icon: "success",
           title: "Log out successful.",
         });
+        navigate("/");
       })
       .catch((err) => {
         MySwal.fire({
@@ -78,9 +81,14 @@ const Header = () => {
                   </OverlayTrigger>
                 ))}
 
-                <Button onClick={logOut} variant="outline-secondary">
-                  Log out
-                </Button>
+                <div
+                  style={{ cursor: "pointer", font: "20px" }}
+                  onClick={logOut}
+                >
+                  <Button variant="secondary" size="sm">
+                    Log out
+                  </Button>
+                </div>
               </>
             ) : (
               <Link

@@ -8,7 +8,7 @@ import withReactContent from "sweetalert2-react-content";
 const MySwal = withReactContent(Swal);
 
 const SignUp = () => {
-  const { user, userSignUp, updateUserProfile, googleSignIn, githubSignIn } =
+  const { setUser, userSignUp, updateUserProfile, googleSignIn, githubSignIn } =
     useContext(AuthContext);
   const [btnChecked, setBtnChecked] = useState(false);
   const navigate = useNavigate();
@@ -22,9 +22,11 @@ const SignUp = () => {
     const password = form.password.value;
     const profile = { displayName, photoURL };
     userSignUp(email, password)
-      .then((res) => {
+      .then(() => {
         updateUserProfile(profile)
-          .then(() => {})
+          .then((res) => {
+            setUser(res.user);
+          })
           .catch(() => {});
         form.reset();
         MySwal.fire({

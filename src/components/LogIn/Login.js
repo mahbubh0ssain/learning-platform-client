@@ -74,6 +74,7 @@ const Login = () => {
         MySwal.fire({
           icon: "success",
           title: "Password reset email has been sent.",
+          text: "Don't worry if the email goes to the spam folder.",
         });
       })
       .catch(() => {});

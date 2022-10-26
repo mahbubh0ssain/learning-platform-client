@@ -2,21 +2,29 @@ import React from "react";
 import { Button, Card, Image } from "react-bootstrap";
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { FaFilePdf } from "react-icons/fa";
+import Pdf from "react-to-pdf";
+const ref = React.createRef();
+
 const CourseDetails = () => {
   const course = useLoaderData();
   const { id, title, author, image_url, details } = course;
   const navigate = useNavigate();
   const { name, img } = author;
-  console.log(img);
+
   return (
     <div className="container my-3">
       <div className=" my-3 d-flex justify-content-center align-items-center">
         <h5 className="me-3 mb-0">Course details {title} </h5>
-        <button className="border-0">
-          <FaFilePdf></FaFilePdf>
-        </button>
+
+        <Pdf targetRef={ref} filename="learn-shine-course.pdf">
+          {({ toPdf }) => (
+            <div style={{ cursor: "pointer" }} onClick={toPdf}>
+              <FaFilePdf />
+            </div>
+          )}
+        </Pdf>
       </div>
-      <Card className="w-75   mx-auto">
+      <Card ref={ref} className="w-75   mx-auto">
         <Card.Header className="d-flex justify-content-between align-items-center">
           <div className="d-flex align-items-center">
             <Image
