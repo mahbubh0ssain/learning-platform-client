@@ -132,25 +132,37 @@ const Login = () => {
           Don't have an account? <Link to="/signup">Create an account</Link>
         </p>
 
-        <div className="my-3 d-flex justify-content-around align-items-center">
-          <Button variant="outline-primary" onClick={signInGoogle}>
-            <img
-              className="img-fluid me-2 "
-              style={{ height: "30px", width: "30px" }}
-              src={"https://i.ibb.co/nCkjPRN/google.png"}
-              alt="..."
-            />
-            Continue with Goggle
-          </Button>
-          <Button variant="outline-secondary" onClick={signInGithub}>
-            <img
-              className="img-fluid me-2"
-              style={{ height: "30px", width: "30px" }}
-              src={"https://cdn-icons-png.flaticon.com/512/25/25231.png"}
-              alt="..."
-            />
-            Continue with Github
-          </Button>
+        <div className="my-3 row row-cols-1 row-cols-md-1 row-cols-lg-2 mx-auto ">
+          <div className=" mb-3">
+            <Button
+              className="w-100"
+              onClick={signInGoogle}
+              variant="outline-primary"
+            >
+              <img
+                className="img-fluid me-2 "
+                style={{ height: "30px", width: "30px" }}
+                src={"https://i.ibb.co/nCkjPRN/google.png"}
+                alt="..."
+              />
+              Continue with Goggle
+            </Button>
+          </div>
+          <div className=" mb-3">
+            <Button
+              className="w-100"
+              onClick={signInGithub}
+              variant="outline-secondary"
+            >
+              <img
+                className="img-fluid me-2"
+                style={{ height: "30px", width: "30px" }}
+                src={"https://cdn-icons-png.flaticon.com/512/25/25231.png"}
+                alt="..."
+              />
+              Continue with Github
+            </Button>
+          </div>
         </div>
       </Form>
     </div>

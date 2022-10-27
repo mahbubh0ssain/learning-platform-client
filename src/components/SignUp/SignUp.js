@@ -81,7 +81,7 @@ const SignUp = () => {
     <div>
       <Form
         onSubmit={handleSubmit}
-        className="w-50 mx-auto my-3 bg-light p-5  rounded-3 shadow"
+        className="container w-50 mx-auto my-5 bg-light p-5  rounded-3 shadow"
       >
         <h1 className="mb-2 text-center">User Sign up</h1>
         <Form.Group className="mb-3">
@@ -149,25 +149,37 @@ const SignUp = () => {
           Already have an account? <Link to="/login">Login</Link>
         </p>
 
-        <div className="my-3 d-flex justify-content-around align-items-center">
-          <Button onClick={signInGoogle} variant="outline-primary">
-            <img
-              className="img-fluid me-2 "
-              style={{ height: "30px", width: "30px" }}
-              src={"https://i.ibb.co/nCkjPRN/google.png"}
-              alt="..."
-            />
-            Continue with Goggle
-          </Button>
-          <Button onClick={signInGithub} variant="outline-secondary">
-            <img
-              className="img-fluid me-2"
-              style={{ height: "30px", width: "30px" }}
-              src={"https://cdn-icons-png.flaticon.com/512/25/25231.png"}
-              alt="..."
-            />
-            Continue with Github
-          </Button>
+        <div className="my-3 row row-cols-1 row-cols-md-1 row-cols-lg-2 mx-auto ">
+          <div className=" mb-3">
+            <Button
+              className="w-100"
+              onClick={signInGoogle}
+              variant="outline-primary"
+            >
+              <img
+                className="img-fluid me-2 "
+                style={{ height: "30px", width: "30px" }}
+                src={"https://i.ibb.co/nCkjPRN/google.png"}
+                alt="..."
+              />
+              Continue with Goggle
+            </Button>
+          </div>
+          <div className=" mb-3">
+            <Button
+              className="w-100"
+              onClick={signInGithub}
+              variant="outline-secondary"
+            >
+              <img
+                className="img-fluid me-2"
+                style={{ height: "30px", width: "30px" }}
+                src={"https://cdn-icons-png.flaticon.com/512/25/25231.png"}
+                alt="..."
+              />
+              Continue with Github
+            </Button>
+          </div>
         </div>
       </Form>
     </div>
