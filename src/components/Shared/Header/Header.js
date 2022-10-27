@@ -64,6 +64,12 @@ const Header = () => {
             <Nav className="ms-auto  text-white ">
               <Link
                 className="me-3 text-decoration-none text-white fw-bold"
+                to="/"
+              >
+                Home
+              </Link>
+              <Link
+                className="me-3 text-decoration-none text-white fw-bold"
                 to="/learn"
               >
                 Learn
