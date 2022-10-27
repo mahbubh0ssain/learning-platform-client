@@ -22,11 +22,10 @@ const SignUp = () => {
     const password = form.password.value;
     const profile = { displayName, photoURL };
     userSignUp(email, password)
-      .then(() => {
+      .then((res) => {
+        setUser(res.user);
         updateUserProfile(profile)
-          .then((res) => {
-            setUser(res.user);
-          })
+          .then(() => {})
           .catch(() => {});
         form.reset();
         MySwal.fire({
