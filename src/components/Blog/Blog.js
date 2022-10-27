@@ -39,17 +39,17 @@ const Blog = () => {
               easily without creating a server by manually. It stores data in
               it's own server and provide us. There are severals alternatives of
               Firebase. They are
-              <ul>
-                <li>MongoDB</li>
-                <li>Oracle Database</li>
-                <li>Amazon Redshift</li>
-                <li>DataStax Enterprise</li>
-                <li>Redis Enterprise</li>
-                <li>Cloud Cloudera Enterprise Data Hub</li>
-                <li>Db2</li>
-                <li>Couchbase Server</li>
-              </ul>
-            </p>
+            </p>{" "}
+            <ul>
+              <li>MongoDB</li>
+              <li>Oracle Database</li>
+              <li>Amazon Redshift</li>
+              <li>DataStax Enterprise</li>
+              <li>Redis Enterprise</li>
+              <li>Cloud Cloudera Enterprise Data Hub</li>
+              <li>Db2</li>
+              <li>Couchbase Server</li>
+            </ul>
           </Accordion.Body>
         </Accordion.Item>
         <Accordion.Item eventKey="2">
