@@ -6,6 +6,18 @@ import LeftSide from "../LeftSide/LeftSide";
 
 const Courses = () => {
   const courses = useLoaderData();
+  console.log(courses);
+  if (courses.length === 0) {
+    return (
+      <div
+        class="spinner-border"
+        style={{ width: "3rem", height: "3rem" }}
+        role="status"
+      >
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    );
+  }
   return (
     <Container className="my-4">
       <Row>

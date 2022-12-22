@@ -5,7 +5,10 @@ import { Link } from "react-router-dom";
 const Home = () => {
   const { user } = useContext(AuthContext);
   return (
-    <div className="container mt-4 mb-3" style={{ minHeight: "72.2vh" }}>
+    <div
+      className=" d-flex justify-content-center align-items-center container mt-4 mb-3"
+      style={{ minHeight: "75vh" }}
+    >
       <div className="container row row-cols-1 row-cols-md-1 row-cols-lg-2 d-flex me-0 ms-0 ">
         <div className="col pt-4 pe-4">
           {user && (
@@ -25,7 +28,7 @@ const Home = () => {
           </p>
           <Link to="/learn">
             <Button className="mt-3" variant="outline-primary">
-              Enroll now
+              Explore more
             </Button>
           </Link>
         </div>

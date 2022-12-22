@@ -2,7 +2,7 @@ import React from "react";
 import Accordion from "react-bootstrap/Accordion";
 const Blog = () => {
   return (
-    <div className="container">
+    <div className="container" style={{ minHeight: "77.2vh" }}>
       <h3 className="my-3">Some blogs for Learn Shine learners.</h3>
       <Accordion defaultActiveKey="0" flush alwaysOpen>
         <Accordion.Item eventKey="0">

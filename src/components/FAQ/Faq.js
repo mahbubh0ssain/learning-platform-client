@@ -2,7 +2,7 @@ import React from "react";
 import Accordion from "react-bootstrap/Accordion";
 const Faq = () => {
   return (
-    <div className="container">
+    <div className="container" style={{ minHeight: "77.2vh" }}>
       <h1 className="my-3">FAQ section.</h1>
       <Accordion className="mb-5" defaultActiveKey="0">
         <Accordion.Item eventKey="0">

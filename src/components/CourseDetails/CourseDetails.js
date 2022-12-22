@@ -12,7 +12,7 @@ const CourseDetails = () => {
   const { name, img } = author;
 
   return (
-    <div className="container my-3">
+    <div className="container my-3" style={{ minHeight: "75.7vh" }}>
       <div className=" my-3 d-flex justify-content-center align-items-center">
         <h5 className="me-3 mb-0">Course details {title} </h5>
         <Pdf targetRef={ref} filename="learn-shine-course.pdf">

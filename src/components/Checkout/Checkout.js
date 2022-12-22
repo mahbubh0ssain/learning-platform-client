@@ -7,7 +7,7 @@ const Checkout = () => {
   const { user } = useContext(AuthContext);
   const { id, title, thumbnail_url, details, price } = data;
   return (
-    <div className="container ">
+    <div className="container" style={{ minHeight: "74.2vh" }}>
       <div className="card w-75 my-5  mx-auto">
         <div className="row g-0">
           <div className="col-md-4">

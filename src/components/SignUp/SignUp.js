@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../../context/Context";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -78,10 +78,11 @@ const SignUp = () => {
   };
 
   return (
-    <div>
+    <div style={{ minHeight: "74.2vh" }}>
       <Form
         onSubmit={handleSubmit}
-        className="container w-50 mx-auto my-5 bg-light p-5  rounded-3 shadow"
+        className="container mx-auto my-5 bg-light p-5  rounded-3 shadow"
+        style={{ maxWidth: "768px" }}
       >
         <h1 className="mb-2 text-center">User Sign up</h1>
         <Form.Group className="mb-3">

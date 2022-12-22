@@ -83,12 +83,13 @@ const Login = () => {
     if (user) {
       navigate(from, { replace: true });
     }
-  }, [user]);
+  }, [user, from, navigate]);
   return (
-    <div>
+    <div style={{ minHeight: "77.2vh" }}>
       <Form
         onSubmit={handleSubmit}
-        className="w-50 mx-auto my-3 bg-light p-5  rounded-3 shadow"
+        className="mx-auto my-3 bg-light p-5  rounded-3 shadow"
+        style={{ maxWidth: "768px" }}
       >
         <h1 className="mb-2 text-center">User Log in</h1>
 
