@@ -1,7 +1,6 @@
 import React from "react";
 import { Button, Card, Image } from "react-bootstrap";
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
-import { FaFilePdf } from "react-icons/fa";
 import Pdf from "react-to-pdf";
 const ref = React.createRef();
 
@@ -33,8 +32,8 @@ const CourseDetails = () => {
           )}
         </Pdf>
       </div>
-      <Card ref={ref} className="w-75   mx-auto">
-        <Card.Header className="d-flex justify-content-between align-items-center">
+      <Card ref={ref} className="w-75 mx-auto card">
+        <Card.Header className="d-flex justify-content-between align-items-center card-header">
           <div className="d-flex align-items-center">
             <Image
               className="me-2"

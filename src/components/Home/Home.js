@@ -35,7 +35,7 @@ const Home = () => {
         <div className="col pt-4  ps-4">
           <Image
             className="img-fluid "
-            src="https://gowithcode.com/wp-content/uploads/2021/04/top-programming-languages.jpg"
+            src="https://i.ibb.co/kMHmYbX/top-programming-languages-removebg-preview.png"
           ></Image>
         </div>
       </div>

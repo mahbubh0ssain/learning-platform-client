@@ -6,7 +6,6 @@ import LeftSide from "../LeftSide/LeftSide";
 
 const Courses = () => {
   const courses = useLoaderData();
-  console.log(courses);
   if (courses.length === 0) {
     return (
       <div

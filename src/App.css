@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.light-theme {
+  --body-bg: #fff;
+  --txt: #000;
+  --card-bg: rgb(255, 255, 255);
+}
+
+.dark-theme {
+  --body-bg: rgb(34, 33, 33);
+  --txt: #fff;
+  --card-bg: rgb(58, 56, 56);
+}
+
+body {
+  background: var(--body-bg) !important;
+}
+
+p,
+h1,
+h3,
+h4,
+h5,
+.card-title {
+  color: var(--txt) !important;
+}
+
+.card {
+  background: var(--card-bg) !important;
+}

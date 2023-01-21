@@ -16,8 +16,8 @@ const CourseCard = ({ course }) => {
         <h5 className="mt-3">Price: ${price}</h5>
         <h3 className="mb-0">{title}</h3>
         <Link to={`/learn/${id}`}>
-          <Button variant="outline-primary" className=" mt-3 w-100">
-            <h5 className="m-0">Enroll</h5>
+          <Button className="mt-3 w-100">
+            <h5 className="m-0 enroll-btn">Enroll</h5>
           </Button>
         </Link>
       </div>

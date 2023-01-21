@@ -1,4 +1,5 @@
-import React, { useContext, useState } from "react";
+import "../../../App.css";
+import React, { useContext, useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -8,12 +9,28 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
-
 const MySwal = withReactContent(Swal);
 
 const Header = () => {
   const { user, userLogOut } = useContext(AuthContext);
-  const [theme, setTheme] = useState(false);
+
+  const [theme, setTheme] = useState(localStorage.getItem("theme"));
+
+  const darkOrLight = () => {
+    if (theme === "light-theme") {
+      setTheme("dark-theme");
+      localStorage.setItem("theme", "dark-theme");
+    } else {
+      setTheme("light-theme");
+      localStorage.setItem("theme", "light-theme");
+    }
+    // theme === "light-theme" ? setTheme("dark-theme") : setTheme("light-theme");
+  };
+
+  useEffect(() => {
+    document.body.className = localStorage.getItem("theme");
+  }, [theme]);
+
   const navigate = useNavigate();
   const logOut = () => {
     userLogOut()
@@ -31,9 +48,7 @@ const Header = () => {
         });
       });
   };
-  const darkOrLight = () => {
-    setTheme(!theme);
-  };
+
   return (
     <div>
       <Navbar
@@ -80,15 +95,10 @@ const Header = () => {
               >
                 FAQ
               </Link>
-              <Link
-                className="me-3 text-decoration-none text-white fw-bold"
-                to="blog"
-              >
-                Blog
-              </Link>
+
               {
                 <div onClick={darkOrLight} style={{ cursor: "pointer" }}>
-                  {!theme ? (
+                  {theme === "light-theme" ? (
                     <div>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -118,7 +128,6 @@ const Header = () => {
                 </div>
               }
             </Nav>
-
             {user?.uid ? (
               <>
                 {["bottom"].map((placement) => (
