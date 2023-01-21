@@ -18,6 +18,7 @@ This is an web based learning platform. [Learn Shine](https://learn-shine-78903.
 - User friendly UI
 - Minimal theme
 - Optimized white space
+- Dark mode added
 - Responsive header and footer for all devices
 
 Thanks you.
